@@ -6,7 +6,7 @@
 /*   By: mbolano- <mbolano-@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 13:50:34 by mbolano-          #+#    #+#             */
-/*   Updated: 2024/10/24 15:06:02 by mbolano-         ###   ########.fr       */
+/*   Updated: 2024/10/24 15:15:09 by mbolano-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,10 @@ long int	ft_atoi(char *src)
 
 void	ft_input_parser(long int pid, char *str)
 {
-	if (pid <= 0)
+	(void)str;
+	if (pid <= 0 || kill(pid, SIGUSR1) != 0)
 		exit(EXIT_FAILURE);
-	printf("El valor del pid es: %ld", pid);
+	printf("El proceso con pid: %ld; existe.\n", pid);
 }
 
 int	main(int argc, char **argv)
