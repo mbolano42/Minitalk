@@ -6,7 +6,7 @@
 /*   By: mbolano- <mbolano-@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 15:16:13 by mbolano-          #+#    #+#             */
-/*   Updated: 2024/10/24 16:44:15 by mbolano-         ###   ########.fr       */
+/*   Updated: 2024/10/24 22:53:28 by mbolano-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,18 @@ void	ft_putnbr(int pid)
 
 void	ft_signal_handler(int signum)
 {
-	
+	static int	letter = 0;
+	static int	count = 0;
+
+	if (signum == SIGUSR2)
+		letter += (1 << count);
+	count++;
+	if (count == 8)
+	{
+		write(1, &letter, 1);
+		count = 0;
+		letter = 0;
+	}
 }
 
 int main(void)
@@ -54,6 +65,7 @@ int main(void)
 	{
 		signal(SIGUSR1, &ft_signal_handler);
 		signal(SIGUSR2, &ft_signal_handler);
+		usleep(1000);
 	}
 	return (0);
 }
