@@ -6,7 +6,7 @@
 /*   By: mbolano- <mbolano-@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 15:16:13 by mbolano-          #+#    #+#             */
-/*   Updated: 2024/10/25 11:46:24 by mbolano-         ###   ########.fr       */
+/*   Updated: 2024/10/25 12:49:54 by mbolano-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ void	ft_putnbr(int pid)
 		ft_putnbr(pid / 10);
 	write(1, &nbr[pid % 10], 1);
 }
+
+// For a better understanding:
+//	-	(1 << 0) = 2^0 -> (1 << 1) = 2^1 ... (1 << 8) = 2^8.
+//	-	letter |= (1 << count); IS THE SAME THAN: letter += (1 << count).
+//	-	Once the server has received 8 signals ().
 
 void	ft_signal_handler(int signum)
 {
@@ -65,7 +70,7 @@ int	main(void)
 	{
 		signal(SIGUSR1, &ft_signal_handler);
 		signal(SIGUSR2, &ft_signal_handler);
-		usleep(300);
+		usleep(500);
 	}
 	return (0);
 }
