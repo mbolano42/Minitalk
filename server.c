@@ -6,7 +6,7 @@
 /*   By: mbolano- <mbolano-@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 15:16:13 by mbolano-          #+#    #+#             */
-/*   Updated: 2024/10/24 22:53:28 by mbolano-         ###   ########.fr       */
+/*   Updated: 2024/10/25 11:38:57 by mbolano-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_fill_nbr(char *nbr)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i <= 9)
@@ -30,7 +30,7 @@ void	ft_putnbr(int pid)
 
 	ft_fill_nbr(nbr);
 	if (pid > 9)
-		ft_putnbr(pid/10);
+		ft_putnbr(pid / 10);
 	write(1, &nbr[pid % 10], 1);
 }
 
@@ -40,7 +40,7 @@ void	ft_signal_handler(int signum)
 	static int	count = 0;
 
 	if (signum == SIGUSR2)
-		letter += (1 << count);
+		letter |= (1 << count);
 	count++;
 	if (count == 8)
 	{
@@ -50,7 +50,7 @@ void	ft_signal_handler(int signum)
 	}
 }
 
-int main(void)
+int	main(void)
 {
 	int	pid;
 
@@ -65,7 +65,7 @@ int main(void)
 	{
 		signal(SIGUSR1, &ft_signal_handler);
 		signal(SIGUSR2, &ft_signal_handler);
-		usleep(1000);
+		usleep(300);
 	}
 	return (0);
 }
