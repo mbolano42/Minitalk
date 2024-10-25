@@ -6,7 +6,7 @@
 /*   By: mbolano- <mbolano-@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 13:50:34 by mbolano-          #+#    #+#             */
-/*   Updated: 2024/10/25 12:49:44 by mbolano-         ###   ########.fr       */
+/*   Updated: 2024/10/25 13:06:26 by mbolano-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ long int	ft_atoi(char *src)
 //	In this way, letter is divided by 2 (letter /= 2) for 8 times,
 //	till sending (with kill) the 8 bits that compose a char var.
 
-void	ft_send_byte_to_server(int letter, long int pid)
+void	ft_send_byte_to_server(unsigned char letter, long int pid)
 {
 	int	i;
 	int	bit;
@@ -69,7 +69,7 @@ void	ft_input_parser(long int pid, char *str)
 		exit(EXIT_FAILURE);
 	while (*str)
 	{
-		ft_send_byte_to_server((int)*str, pid);
+		ft_send_byte_to_server((unsigned char)*str, pid);
 		str++;
 	}
 }
